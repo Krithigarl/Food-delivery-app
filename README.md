@@ -67,7 +67,7 @@ http://localhost:5173
 Inside backend/.env file:
 
 PORT=5000
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/foodapp
+MONGO_URI=MONGO_URI=mongodb+srv://username:password@cluster0.mongodb.net/dbname
 JWT_SECRET=supersecretkey
 
 ⚠ Do NOT upload .env file to GitHub.
