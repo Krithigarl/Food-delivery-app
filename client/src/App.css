@@ -1,0 +1,247 @@
+body {
+  overflow-x: hidden;
+  background-color: #F9FAFB ;
+}
+
+/* .bgimage{
+  background-image: url(./assets//bgimages.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 40%;
+} */
+
+/* Register */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff7ed;
+}
+
+.register-form {
+  background: white;
+  padding: 2rem;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-form input,
+.register-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  background: #ea580c;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Register */
+
+/* Home */
+.brand {
+  font-family: "Momo Signature", cursive;
+  font-weight: 400;
+  font-size: 30px;
+  font-style: normal;
+  color: #F1FAEE;
+}
+.navbar{
+  background-color: #1D3557;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+.Search-box {
+  margin: 30px 0;
+  padding: 0 20px;
+    
+}
+
+.search-input {
+  width: 50%;
+  padding: 10px 25px;
+  border: 1px solid #ddd;
+  outline: none;
+  margin-left: 25%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 50px;
+}
+
+.navbar .form-control,
+.navbar .form-select {
+  min-width: 220px;
+}
+
+.icon-one {
+  position: relative;
+  left: 27%;
+  
+}
+
+@media (max-width: 768px) {
+
+  .navbar .form-control,
+  .navbar .form-select {
+    width: 100%;
+  }
+}
+
+.category {
+  padding: 20px 0;
+}
+
+.images-category {
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.category-card {
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 576px) {
+  .images-category {
+    height: 90px;
+  }
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+}
+
+.img_rest {
+  width: 300px;
+  height: 200px;
+}
+
+.img_rest1 {
+  width: 300px;
+  height: 300px;
+  margin-top: 5%;
+  color: #333333;
+}
+
+.img_rest1:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.card-one {
+  display: flex;
+
+}
+
+.star {
+  color: #FFC107;
+  font-size: 15px;
+}
+.text-two{
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1D3557;
+  margin: 30px 0;
+}
+.delivery {
+  margin-left: 55%;
+}
+
+.text-one {
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1D3557;
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* video */
+.video-container {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.1);
+}
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  top: 40%;
+  left: 25%;
+}
+/* FOOTER */
+.brand1{
+  font-family: "Momo Signature", cursive;
+  font-weight: 400;
+  font-size: 30px;
+  font-style: normal;
+  
+}
+.footer{
+  background-color: #1D3557;
+  color:#F1FAEE;
+  margin-top: 6%;
+  padding: 4% 2% 4% 2%;
+}
+
+/* MENU */
+.navbar1{
+  background-image: url(./assets/oceanbg1.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding:15% 0px;
+}
+.text{
+  font-size: 30px;
+  color: #ddd;
+}
+.arrow_icon i{
+  margin-right: 30px;
+  margin-left: 10px;
+  font-size: 35px;
+  color: #ddd;
+}
+.cart_icon i{
+ position: relative;
+ left: 700px;
+ color: #ddd;
+}
