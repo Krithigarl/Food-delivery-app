@@ -9,7 +9,6 @@ const Register = () => {
     email: "",
     phone: "",
     password: "",
-    role: "user",
   });
 
   const [message, setMessage] = useState("");
@@ -91,21 +90,10 @@ const Register = () => {
           onChange={handleChange}
           required
         />
-
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-        >
-          <option value="user">User</option>
-          <option value="restaurant">Restaurant Admin</option>
-          <option value="delivery">Delivery Partner</option>
-        </select>
-
         <button type="submit">Register</button>
 
         <p>
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login" style={{color:"#198754"}}>Login</Link>
         </p>
 
       </form>

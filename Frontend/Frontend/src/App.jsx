@@ -9,27 +9,51 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import axios from 'axios';
 import Footer from './components/Footer';
-import Breakfast from './Pages/Breakfast';
 import Navigation from './components/Navigation';
 import Order_summary from './components/Order_summary';
 import Place_order from './components/Place_order';
+import Otp from './components/Otp'
+import OrderSuccess from './components/Sucess';
+import AdminDashboard from './Dashboard/Admindashboard';
+import AddFood from './Dashboard/Addfoodform';
+import { useAccordionButton } from 'react-bootstrap';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
-  const [dishes, setDishes] = useState([]);
-
+  const [menu, setMenu] = useState({
+  starter: [],
+  main: [],
+  dessert: []
+});
   // Fetch dishes from backend
-  useEffect(() => {
-    const fetchDishes = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/api/dishes');
-        setDishes(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchDishes();
-  }, []);
+useEffect(() => {
+  const fetchDishes = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/dishes");
+
+      const restaurantData = res.data.filter(
+        (dish) => dish.resturant === "oceanResturant"
+      );
+
+      setMenu({
+        starter: restaurantData.filter(
+          (d) => d.category.toLowerCase() === "starter"
+        ),
+        main: restaurantData.filter(
+          (d) => d.category.toLowerCase() === "main"
+        ),
+        dessert: restaurantData.filter(
+          (d) => d.category.toLowerCase() === "dessert"
+        ),
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  fetchDishes();
+}, []);
 
   // Fetch cart items from backend
   const fetchCart = async () => {
@@ -50,19 +74,22 @@ const App = () => {
     <Navigation/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/breakfast' element={<Breakfast/>}></Route>
         <Route 
           path="/menu" 
-          element={<Menu dishes={dishes} fetchCart={fetchCart} />} 
+          element={<Menu menu={menu} fetchCart={fetchCart} />} 
         />
         <Route 
           path="/menu/addtocart" 
           element={<Addtocart cartItems={cartItems} fetchCart={fetchCart} />} 
         />
-        <Route path="/menu/summary/:dish" element={<Order_summary dishes={dishes} cartItems={cartItems} />} />
+        <Route path="/menu/summary/:dish" element={<Order_summary menu={menu} cartItems={cartItems} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/placeorder' element={<Place_order/>}/>
+        <Route path='/opt' element={<Otp/>}/>
+        <Route path='/sucess' element={<OrderSuccess/>}/>
+        <Route path='/admin/dashboard' element={<AdminDashboard/>}></Route>
+        <Route path='/admin/addfood' element={<AddFood/>}></Route>
       </Routes>
       <Footer/>
     </BrowserRouter>

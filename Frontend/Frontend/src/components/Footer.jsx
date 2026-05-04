@@ -1,9 +1,14 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { useLocation } from 'react-router-dom'
 
 const Footer = () => {
+  const location = useLocation()
   return (
     <div>
+      {location.pathname !== "/admin" &&
+      location.pathname !== "/login" &&
+      location.pathname !== "/register"&&(
         <div className="footer">
   <Row>
     <Col>
@@ -38,6 +43,8 @@ const Footer = () => {
     </Col>
   </Row>
 </div>
+)
+      }
     </div>
   )
 }

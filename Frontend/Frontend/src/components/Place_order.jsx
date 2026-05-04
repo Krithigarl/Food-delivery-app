@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Place_order = () => {
 
@@ -25,14 +26,14 @@ const Place_order = () => {
 
       await axios.post("http://localhost:5000/api/placeorder", formData);
 
-      alert("Order placed successfully");
+      
 
 
     } catch (error) {
       console.log(error);
     }
   };
-
+const navigate = useNavigate()
   return (
     <Container className="mt-5 d-flex justify-content-center">
 
@@ -95,7 +96,7 @@ const Place_order = () => {
           </Form.Group>
 
           <div className="text-center">
-            <Button type="submit" variant="success">
+            <Button type="submit" variant="success" onClick={()=>navigate("/sucess")}>
               Place Order
             </Button>
           </div>

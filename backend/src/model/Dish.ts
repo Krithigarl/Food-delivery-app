@@ -4,12 +4,16 @@ export interface IDish extends Document {
   name: string;
   price: number;
   image: string;
+  category: string;
+  resturant: string;
 }
 
 const DishSchema: Schema = new Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   image: { type: String, required: true },
+  category: { type: String,  enum: ["Starter", "Main", "Dessert"], required: true },
+  resturant: { type: String, required: true },
 });
 
 export default mongoose.model<IDish>('Dish', DishSchema);

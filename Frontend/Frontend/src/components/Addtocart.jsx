@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 const Addtocart = ({ cartItems, fetchCart }) => {
   const navigate = useNavigate();
@@ -30,18 +31,18 @@ const Addtocart = ({ cartItems, fetchCart }) => {
 
   return (
     <>
-    <nav className='navbar'>
-<p className='text'><span className='arrow_icon'><Link to="/menu"><i className="uil uil-arrow-left"></i></Link></span>My Product</p>
+   
+<p className='text'>My Product</p>
 
-      </nav>
+    
     <div className="container mt-4">
-      <h2>My Product</h2>
+      
       {cartItems.length === 0 ? (
         <div>
           <p>Your cart is empty.</p>
-          <button className="btn btn-primary" onClick={() => navigate("/menu")}>
+          <Button className="btn-login" onClick={() => navigate("/menu")}>
             Go to Menu
-          </button>
+          </Button>
         </div>
       ) : (
         <table className="table table-bordered mt-3">
@@ -60,28 +61,28 @@ const Addtocart = ({ cartItems, fetchCart }) => {
             {cartItems.map((item) => (
               <tr key={item._id}>
                 <td>
-                  <img src={item.dish.image} alt={item.dishname} width="80" />
+                  <img src={item.dish.image} alt={item.dish.name} width="80" />
                 </td>
                 <td>{item.dish.name}</td>
                 <td>₹{item.dish.price}</td>
                 <td>
-                  <button className="btn btn-secondary btn-sm me-2" onClick={() => updateQty(item._id, "dec")}>-</button>
+                  <Button className="btn-login btn-sm me-2" onClick={() => updateQty(item._id, "dec")}>-</Button>
                   {item.qty}
-                  <button className="btn btn-secondary btn-sm ms-2" onClick={() => updateQty(item._id, "inc")}>+</button>
+                  <Button className="btn-login btn-sm ms-2" onClick={() => updateQty(item._id, "inc")}>+</Button>
                 </td>
                 <td>₹{item.dish.price * item.qty}</td>
                 <td>
-                  <button className="btn btn-danger btn-sm" onClick={() => removeItem(item._id)}>Remove</button>
+                  <Button className="btn-login btn-sm" onClick={() => removeItem(item._id)}>Remove</Button>
                 </td>
                 <td>
-                  <button className="btn btn-danger btn-sm" onClick={()=>navigate(`/menu/summary/${item.dish._id}`)}>Buy now</button>
+                  <Button className="btn-login btn-sm" onClick={()=>navigate(`/menu/summary/${item.dish._id}`)}>Buy now</Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
-      {cartItems.length > 0 && <h4>Total Amount: ₹{totalAmount}</h4>}
+      {cartItems.length > 0 && <h4 className="text-black">Total Amount: ₹{totalAmount}</h4>}
     </div>
     </>
   );

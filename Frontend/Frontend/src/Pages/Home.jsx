@@ -4,9 +4,10 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import breakfast from '../assets/Breakfast.jpg'
-import dinner from '../assets/dinner.jpg'
-import lunch from '../assets/lunch.jpg'
+import breakfast from '../assets/Breakfast.png'
+import dinner from '../assets/dinner.png'
+import lunch from '../assets/meal.png'
+import snack from '../assets/snack.png'
 import TheOceanRestaurant from '../assets/The Ocean Restaurant (2).jpg'
 import ZamZamRestaurant from '../assets/Zam Zam Restaurant2.jpg'
 import TheCurry from '../assets/The Curry.jpg'
@@ -16,10 +17,10 @@ import Arafa from '../assets/Arafa Restaurant.jpg'
 import bgvideo1 from '../assets/bgvideo1.mp4'
 import { useNavigate } from 'react-router';
 const Home = () => {
-  const category = [{ id: 201, name: "Breakfast", images: breakfast },
-  { id: 201, name: "Lunch", images: lunch },
-  { id: 202, name: "Lunch", images: lunch },
-  { id: 203, name: "Dinner", images: dinner }
+  const category = [{ id: 201, name: "Breakfast", images: breakfast,topic:"4 Restaurants Products" },
+  { id: 201, name: "Lunch", images: lunch,topic:"10 Restaurants Products" },
+  { id: 202, name: "snack", images: snack,topic:"7 Restaurants Products" },
+  { id: 203, name: "Dinner", images: dinner,topic:"2 Restaurants Products" }
   ]
   const navigate = useNavigate();
   const restaurant = [{ id: 201, Rest_name: "The Ocean Restaurant", images: TheOceanRestaurant, rating: "3.9", delviery_min: "20-30min" },
@@ -68,26 +69,27 @@ const Home = () => {
               Your browser does not support the video tag.
             </video>
             <Container className="content text-center text-black">
-              <h1>Fresh & Tasty, Just For You</h1>
-              <p>This is background video using React Bootstrap</p>
+              <h1>Food That Feels Like Home </h1>
+              <p>
+                Bringing you comfort, taste, and love in every dish.
+              </p>
             </Container>
           </div>
         </div>
 
         <div className="category">
-          <h5 className="mb-3 ms-4 text-two">What's on your mind?</h5>
+          <h6 className=" ms-4 text-two1 text-center">TOP FOODS</h6>
+          <h2 className="mb-3 ms-4 text-two text-center">CATEGORY</h2>
 
           <Container>
-            <Row className="g-3 justify-content-center">
+            <Row className="g-3">
               {category.map((items) => (
                 <Col
                   key={items.id}
-                  xs={6}
-                  sm={4}
+                  sm={12}
                   md={3}
-                  lg={2}
                 >
-                  <Card className="text-center h-100 category-card" >
+                  <Card className="text-center category-card ">
                     <Card.Img
                       variant="top"
                       src={items.images}
@@ -97,7 +99,9 @@ const Home = () => {
                       <Card.Title className="fs-6">
                         {items.name}
                       </Card.Title>
-                      <Button onClick={() => navigate("/breakfast")}>View</Button>
+                       <Card.Title className="fs-6">
+                        {items.topic}
+                      </Card.Title>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -112,7 +116,7 @@ const Home = () => {
           <Container>
             <Row>
               {restaurant.map((rest) => (
-                <Col md={12} lg={4} key={rest.id}>
+                <Col sm={6} md={4} key={rest.id} >
                   <Card className='img_rest1' onClick={() => navigate("/menu")} style={{ cursor: "pointer" }}>
                     <Card.Img variant="top" src={rest.images} className='img_rest' />
                     <Card.Body>

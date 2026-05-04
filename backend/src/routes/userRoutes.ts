@@ -12,7 +12,7 @@ router.post("/register", async (req: Request, res: Response) => {
 
   try {
 
-    const { name, email, password,phone,role } = req.body;
+    const { name, email, password,phone } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -27,7 +27,7 @@ router.post("/register", async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       phone,
-      role
+      role: "user"
     });
 
     await newUser.save();
@@ -64,9 +64,9 @@ router.post("/login", async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign(
-      { id: user._id },
-      SECRET,
-      { expiresIn: "1d" }
+      { id: user._id,role: user.role },
+      "secretkey",
+      { expiresIn: "1h" }
     );
 
     res.json({
@@ -75,7 +75,8 @@ router.post("/login", async (req: Request, res: Response) => {
       token,
       user: {
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role,
       }
     });
 

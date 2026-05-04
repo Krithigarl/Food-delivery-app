@@ -13,16 +13,13 @@ const Order_summary = ({ cartItems = [] }) => {
   }
 const navigate = useNavigate()
   return (
-    <Container className="order-page">
+    <>
 
       {/* Navbar */}
-      <nav className="order-navbar">
-        <Link to="/" className="back-btn">
-          ← Back
-        </Link>
-        <h4>Order Summary</h4>
-      </nav>
-
+     
+        <h4 className="text">Order Summary</h4>
+  
+<Container className="order-page">
       <Card className="order-card shadow">
 
         <Row className="align-items-center">
@@ -75,6 +72,7 @@ const navigate = useNavigate()
       </Card>
 
     </Container>
+    </>
   );
 };
 
