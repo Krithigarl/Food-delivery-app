@@ -12,6 +12,8 @@ const AddFood = () => {
     name: "",
     price: "",
     image: "",
+    category: "Starter",
+    resturant: "oceanResturant"
   });
 
   // Handle input
@@ -60,6 +62,8 @@ const AddFood = () => {
           name: "",
           price: "",
           image: "",
+          category: "Starter",
+          resturant: "oceanResturant"
         });
 
         fetchFoods(); // refresh list
@@ -72,31 +76,31 @@ const AddFood = () => {
     <Container className="mt-5">
       <Row>
         <Col lg={10}>
-      <Form className="d-flex w-75 my-4 mx-5 ">
-      
-                <Form.Control
-                  type="text"
-                  list="foodlist"
-                  placeholder="Search food..."
-                  className="me-2 form-search"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-      
-                <datalist id="foodlist">
-                  <option value="Pizza" />
-                  <option value="Burger" />
-                  <option value="Biryani" />
-                  <option value="Dosa" />
-                  <option value="Fried Rice" />
-                </datalist>
-                <Button type='submit' className='button1'>Search</Button>
-              </Form>
-              </Col>
-              <Col lg={2}>
-      <Button onClick={() => setOpen(true)} className="food-btn border-0 mt-2"><FaPlus/></Button>
-      <Button className="food-btn1 text-black border-0 mt-3"><i className="uil uil-trash-alt "></i></Button>
-      </Col>
+          <Form className="d-flex w-75 my-4 mx-5 ">
+
+            <Form.Control
+              type="text"
+              list="foodlist"
+              placeholder="Search food..."
+              className="me-2 form-search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <datalist id="foodlist">
+              <option value="Pizza" />
+              <option value="Burger" />
+              <option value="Biryani" />
+              <option value="Dosa" />
+              <option value="Fried Rice" />
+            </datalist>
+            <Button type='submit' className='button1'>Search</Button>
+          </Form>
+        </Col>
+        <Col lg={2}>
+          <FaPlus  onClick={() => setOpen(true)} className="food-btn border-0" />
+          <i className="uil uil-trash-alt food-btn1"></i>
+        </Col>
       </Row>
       {open &&
         <Row className="justify-content-center">
@@ -131,11 +135,38 @@ const AddFood = () => {
 
                 {/* Category */}
                 <Form.Group className="mb-3">
-                  <Form.Label>Images</Form.Label>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Select
+                    name="category"
+                    value={form.category}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="Starter">Starter</option>
+                    <option value="Main">Main</option>
+                    <option value="Dessert">Dessert</option>
+                  </Form.Select>
+                </Form.Group>
+
+                {/* Image URL */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Image URL</Form.Label>
                   <Form.Control
                     type="text"
                     name="image"
                     value={form.image}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                {/* Restaurant */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Restaurant</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="resturant"
+                    value={form.resturant}
                     onChange={handleChange}
                     required
                   />
@@ -151,27 +182,33 @@ const AddFood = () => {
       }
       {/* Food List */}
       <div className="mt-4">
-        <h4>Food List</h4>
+        <h4 className="text-one">FOOD LIST</h4>
+        <div className="foods">
+          <Row className="">
+            {foods.map((f) => (
+              <Col md={3} key={f._id}>
+                <Card className="mb-4 shadow-sm w-100 height-cards">
+                  <Card.Img variant="top" src={f.image} className="w-100 h-50"/>
+                  <Card.Body>
+                    <Card.Title>{f.name}</Card.Title>
+                    <Card.Text>
+                      {f.price}
+                    </Card.Text>
+                    <div className="d-flex">
+                    <Form.Select className="mb-3" aria-label="Default select example">
+                      <option>Change Status</option>
+                      <option value="1">In Stock</option>
+                      <option value="2">Out of Stock</option>
+                    </Form.Select>
 
-
-        <Table bordered className="text-black bg-white text-center border-4">
-          <tr> 
-            
-            <th className="p-4">Food</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Status</th>
-          </tr>
-          {foods.map((f) => (
-            <tr key={f._id}>
-            
-              <th><img src={f.image} alt="" width={100} height={100} /></th>
-              <th>{f.name}</th>
-              <th>{f.price}</th>
-              <th>Status</th>
-            </tr>
-          ))}
-        </Table>
+                    <Button className="btn-view">View</Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
 
       </div>
     </Container>

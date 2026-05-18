@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function App() {
+function Otp() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1);
@@ -17,6 +17,7 @@ const sendOTP = async () => {
       email: email
     });
     alert("OTP Sent");
+    setStep(2);
   } catch (err) {
     console.error(err.response?.data || err.message);
   }
@@ -56,4 +57,4 @@ const sendOTP = async () => {
   );
 }
 
-export default App;
+export default Otp;

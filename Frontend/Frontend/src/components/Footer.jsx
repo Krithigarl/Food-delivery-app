@@ -6,7 +6,7 @@ const Footer = () => {
   const location = useLocation()
   return (
     <div>
-      {location.pathname !== "/admin" &&
+      {location.pathname !== "/admin/dashboard" &&
       location.pathname !== "/login" &&
       location.pathname !== "/register"&&(
         <div className="footer">

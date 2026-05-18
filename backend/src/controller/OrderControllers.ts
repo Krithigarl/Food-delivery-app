@@ -1,5 +1,5 @@
 import express, { Response } from "express";
-import Order from "../model/Order";
+import Order from "../model/Myorder";
 import { AuthRequest } from "../types/types";
 
 

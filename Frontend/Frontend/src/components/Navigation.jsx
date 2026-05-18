@@ -47,7 +47,7 @@ const location = useLocation();
                     {/* Left Menu */}
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/dishes">Dishes</Nav.Link>
+                        <Nav.Link href="/menu">Dishes</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
                     </Nav>
 
@@ -91,7 +91,7 @@ const location = useLocation();
                         </div>
 
                         {/* Cart */}
-                        <FaShoppingCart size={22} style={{ cursor: "pointer" }} />
+                        <FaShoppingCart size={22} style={{ cursor: "pointer" }} onClick={()=> navigate("/menu/addtocart")} />
                     </div>
                 </Navbar.Collapse>
             </Container>

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const Place_order = () => {
+const Place_order = ({ cartItems = [] }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Check if this is a Buy Now order
+  const buyNowData = location.state;
+  const isBuyNow = buyNowData?.isBuyNow;
 
   const [formData, setFormData] = useState({
     streetname: "",
@@ -19,21 +25,60 @@ const Place_order = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-      
+  const parseJwt = (token) => {
     try {
-
-      await axios.post("http://localhost:5000/api/placeorder", formData);
-
-      
-
-
-    } catch (error) {
-      console.log(error);
+      const payload = token.split('.')[1];
+      return JSON.parse(atob(payload));
+    } catch {
+      return null;
     }
   };
-const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    const user = token ? parseJwt(token) : null;
+    const name = localStorage.getItem('username') || "";
+    const email = localStorage.getItem('userEmail') || "";
+    const userId = user?.id || user?._id || "";
+
+    try {
+      const address = `${formData.streetname}, ${formData.city}, ${formData.pincode}`;
+
+      const items = isBuyNow && buyNowData
+        ? buyNowData.items
+        : cartItems.map((item) => ({
+            name: item.dish?.name,
+            price: item.dish?.price,
+            quantity: item.qty
+          }));
+
+      const totalAmount = isBuyNow && buyNowData
+        ? buyNowData.totalAmount
+        : cartItems.reduce(
+            (sum, item) => sum + (item.dish?.price ?? 0) * (item.qty ?? 0),
+            0
+          );
+
+      const orderData = {
+        userId,
+        name,
+        email,
+        items,
+        address,
+        totalAmount
+      };
+
+      await axios.post("http://localhost:5000/api/order/create", orderData);
+
+      navigate('/sucess');
+    } catch (error) {
+      console.log(error);
+      alert(error.response?.data?.message || "Order failed. Please try again.");
+    }
+  };
+
   return (
     <Container className="mt-5 d-flex justify-content-center">
 
@@ -96,7 +141,7 @@ const navigate = useNavigate()
           </Form.Group>
 
           <div className="text-center">
-            <Button type="submit" variant="success" onClick={()=>navigate("/sucess")}>
+            <Button type="submit" variant="success">
               Place Order
             </Button>
           </div>

@@ -1,56 +1,177 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Button, Table, Navbar, Nav } from "react-bootstrap";
-import axios from 'axios';
-const Dashbord = () => {
-    const [data, setData] = useState({});
+import { useEffect, useState } from "react";
 
+import axios from "axios";
+
+import {
+  Pie,
+  Bar,
+} from "react-chartjs-2";
+
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Colors,
+} from "chart.js";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
+
+export default function AdminDashboard() {
+
+  const [data, setData] = useState(null);
+
+  
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/dashboard',{
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`
-  }
-}).then(res => setData(res.data));
+
+    fetchAnalytics();
+
   }, []);
+
+  
+  const fetchAnalytics = async () => {
+
+    const res = await axios.get(
+      "http://localhost:5000/api/admindash/analytics"
+    );
+
+    setData(res.data);
+  };
+
+  
+  if (!data) return <h2>Loading...</h2>;
+
+  
+  // Pie Chart Data
+  const pieData = {
+    labels: [
+      "Placed",
+      "Preparing",
+      "Out for Delivery",
+      "Delivered",
+    ],
+
+    datasets: [
+      {
+        data: [
+          data.statusData.placed,
+          data.statusData.preparing,
+          data.statusData.outForDelivery,
+          data.statusData.delivered,
+        ],
+        backgroundColor: [
+        "#3498db",
+        "#f39c12",
+        "#9b59b6",
+        "#2ecc71",
+      ],
+
+      borderWidth: 2,
+      },
+    ],
+  };
+
+  
+  // Bar Chart Data
+  const barData = {
+    labels: [
+      "Orders",
+      "Delivered",
+      "Pending",
+    ],
+
+    datasets: [
+      {
+        label: "Order Statistics",
+
+        data: [
+          data.totalOrders,
+          data.deliveredOrders,
+          data.pendingOrders,
+        ],
+         backgroundColor: [
+        "#1f77b4",
+        "#2ecc71",
+        "#e74c3c",
+      ],
+
+      },
+    ],
+  };
+
+  
   return (
-    <div>
-        <Row className="mb-4 mt-5">
-              <Col md={4}>
-                <Card className="shadow">
-                  <Card.Body>
-                    <h5>Total Foods</h5>
-                    <h3>{data.totalFoods}</h3>
-                  </Card.Body>
-                </Card>
-              </Col>
+    <div className="p-md-4" >
 
-              <Col md={4}>
-                <Card className="shadow">
-                  <Card.Body>
-                    <h5>Total Orders</h5>
-                    <h3>{data.totalOrders}</h3>
-                  </Card.Body>
-                </Card>
-              </Col>
+      <h1 className="text-one">ADMIN DASHBOARD</h1>
 
-              <Col md={4}>
-                <Card className="shadow">
-                  <Card.Body>
-                    <h5>Users</h5>
-                    <h3>{data.totalUsers}</h3>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col md={4}>
-                <Card className="shadow mt-5">
-                  <Card.Body>
-                    <h5>Users</h5>
-                    <h3> ₹{data.revenue}</h3>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
+      
+      {/* Cards */}
+      <div className="d-md-flex gap-md-4"
+      >
+
+        <div style={cardStyle}>
+          <h3>Total Orders</h3>
+          <p>{data.totalOrders}</p>
+        </div>
+
+        <div style={cardStyle}>
+          <h3>Total Revenue</h3>
+          <p>₹{data.totalRevenue}</p>
+        </div>
+
+        <div style={cardStyle}>
+          <h3>Delivered Orders</h3>
+          <p>{data.deliveredOrders}</p>
+        </div>
+
+      </div>
+
+      
+      {/* Charts */}
+      <div
+        className="d-md-flex gap-md-4 justify-content-center align-items-start flex-wrap"
+      >
+
+        <div  className="pie-chart">
+          <h3 className="status">Order Status</h3>
+          <Pie  options={{
+          plugins: {
+            legend: {
+              position: "left",
+            },
+          },
+        }} data={pieData} />
+        </div>
+
+        <div  className="pie-chart">
+          <h3 className="status">Order Overview</h3>
+          <Bar data={barData} />
+        </div>
+
+      </div>
+
     </div>
-  )
+  );
 }
 
-export default Dashbord
+
+const cardStyle = {
+  padding: "20px",
+  width: "400px",
+  borderRadius: "10px",
+  color: "#198754",
+  backgroundColor: "#f0f0f0",
+  marginBottom: "20px",
+  boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+};

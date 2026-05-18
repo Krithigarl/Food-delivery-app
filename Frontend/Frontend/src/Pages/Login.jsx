@@ -54,6 +54,7 @@ const Login = () => {
         // Save token in localStorage
         localStorage.setItem("token", token);
         localStorage.setItem("username", res.data.user.name);
+        localStorage.setItem("userEmail", res.data.user.email);
 
         // Remember Me Cookie
         if (rememberMe) {

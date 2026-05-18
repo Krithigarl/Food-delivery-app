@@ -30,7 +30,7 @@ const OrderSuccess = () => {
             Go to Home
           </Button>
 
-          <Button variant="outline-primary" onClick={() => navigate("/orders")}>
+          <Button variant="outline-primary" onClick={() => navigate("/myorder")}>
             View Orders
           </Button>
         </div>

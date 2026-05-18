@@ -3,7 +3,7 @@ import { Router } from "express";
 
 import User from "../model/User";
 import Food from "../model/Food";
-import Order from "../model/Order";
+import Order from "../model/Myorder";
 
 
 // Define Order Type (important for TypeScript)

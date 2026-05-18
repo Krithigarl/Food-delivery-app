@@ -1,88 +1,75 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Button, Container } from "react-bootstrap";
 
-const Orderadmin = () => {
+export default function AdminOrders() {
+
   const [orders, setOrders] = useState([]);
-
-  // Fetch orders
-  const fetchOrders = () => {
-    axios
-      .get("http://localhost:5000/api/admin/order", {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`
-  }
-})
-      .then((res) => setOrders(res.data))
-      .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     fetchOrders();
   }, []);
 
-  // Update status
-  const updateStatus = (id, status) => {
-    axios
-      .put(
-        `http://localhost:5000/api/admin/orders/${id}`,
-        { status },
-       {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`
-  }
-}
-      )
-      .then(() => {
-        alert("Status Updated ✅");
-        fetchOrders();
-      })
-      .catch((err) => console.log(err));
+  const fetchOrders = async () => {
+
+    const res = await axios.get(
+      "http://localhost:5000/api/order"
+    );
+
+    setOrders(res.data);
+  };
+
+  const updateStatus = async (id, status) => {
+
+    await axios.put(
+      `http://localhost:5000/api/order/${id}/status`,
+      { status }
+    );
+
+    fetchOrders();
   };
 
   return (
-    <Container className="mt-4">
-      <h3>Orders Management</h3>
+    <div>
 
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+      <h2>Admin Orders</h2>
 
-        <tbody>
-          {orders.map((o, index) => (
-            <tr key={o._id}>
-              <td>{index + 1}</td>
+      {orders.map((order) => (
 
-              {/* Adjust based on backend */}
-              <td>{o.userId || o.user}</td>
-              <td>₹{o.totalAmount || o.total}</td>
+        <div
+          key={order._id}
+          style={{
+            border: "1px solid black",
+            padding: "20px",
+            marginBottom: "20px",
+          }}
+        >
 
-              <td>{o.status}</td>
+          <h3>{order._id}</h3>
 
-              <td>
-                {o.status !== "Delivered" && (
-                  <Button
-                    variant="success"
-                    size="sm"
-                    onClick={() => updateStatus(o._id, "Delivered")}
-                  >
-                    Mark Delivered
-                  </Button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Container>
+          <p>{order.status}</p>
+
+          <select
+            value={order.status}
+            onChange={(e) =>
+              updateStatus(order._id, e.target.value)
+            }
+          >
+            <option>Placed</option>
+
+            <option>Confirmed</option>
+
+            <option>Preparing</option>
+
+            <option>Out for Delivery</option>
+
+            <option>Delivered</option>
+
+            <option>Cancelled</option>
+
+          </select>
+
+        </div>
+      ))}
+    </div>
   );
-};
-
-export default Orderadmin;
+}
