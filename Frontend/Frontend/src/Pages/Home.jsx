@@ -40,29 +40,29 @@ const Home = () => {
   const testimonials = [
     {
       id: 1,
-      name: "John Doe",
-      role: "Entrepreneur",
+      name: "Krithiga",
+      role: "IT Professional",
       image:
         "https://i.pravatar.cc/100?img=1",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima."
+      text: "I have been using this food delivery service for a few months now, and I am extremely satisfied with the quality of food and the prompt delivery. The variety of options available is impressive, and the customer service is top-notch. Highly recommended!"
     },
 
     {
       id: 2,
-      name: "John Doe",
-      role: "Entrepreneur",
+      name: "Ramalingam",
+      role: "Builder",
       image:
         "https://i.pravatar.cc/100?img=2",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima."
+      text: "The food delivery service has been a game-changer for me. The convenience of ordering food from my favorite restaurants and having it delivered to my doorstep is fantastic. The delivery drivers are always friendly and efficient, and the food arrives hot and fresh."
     },
 
     {
       id: 3,
-      name: "John Doe",
-      role: "Entrepreneur",
+      name: "Viswa",
+      role: "Photographer",
       image:
         "https://i.pravatar.cc/100?img=3",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima."
+      text: "I have tried several food delivery services, but this one stands out for its exceptional quality and reliability. The food is consistently delicious, and the delivery is always on time. The user-friendly app makes ordering a breeze, and the customer support team is responsive and helpful."
     }
   ];
 

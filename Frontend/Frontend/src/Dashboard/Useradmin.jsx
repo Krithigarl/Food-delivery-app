@@ -8,7 +8,7 @@ const Useradmin = () => {
   // Fetch users
   const fetchUsers = () => {
     axios
-      .get("http://localhost:5000/api/admin/users", {
+      .get(import.meta.env.VITE_API_URL + "/api/admin/users", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -27,7 +27,7 @@ const Useradmin = () => {
     if (!confirmDelete) return;
 
     axios
-      .delete(`http://localhost:5000/api/admin/users/${id}`, {
+      .delete(import.meta.env.VITE_API_URL + `/api/admin/users/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }

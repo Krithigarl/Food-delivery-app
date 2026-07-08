@@ -6,11 +6,7 @@ function Otp() {
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1);
 
-//   const sendOTP = async () => {
-//     await axios.post("http://localhost:5000/api/send-otp", { email :email});
-//     alert("OTP Sent");
-//     // setStep(2);
-//   };
+
 const sendOTP = async () => {
   try {
     await axios.post("http://localhost:5000/api/send-otp", {

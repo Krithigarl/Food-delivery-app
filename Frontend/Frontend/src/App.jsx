@@ -31,7 +31,7 @@ const App = () => {
 useEffect(() => {
   const fetchDishes = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/dishes");
+      const res = await axios.get(import.meta.env.VITE_API_URL + "/api/dishes");
 
       const restaurantData = res.data.filter(
         (dish) => dish.resturant === "oceanResturant"
@@ -60,7 +60,7 @@ useEffect(() => {
   // Fetch cart items from backend
   const fetchCart = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/cart');
+      const res = await axios.get(import.meta.env.VITE_API_URL + "/api/cart");
       setCartItems(res.data);
     } catch (err) {
       console.error(err);

@@ -10,6 +10,7 @@ import otpRoutes from './routes/otpRoutes'
 import adminRoutes from './routes/adminRoutes'
 import orderRoutes from './routes/orderRoutes'
 import admindashRoutes from './routes/admindash';
+import reviewRoutes from './routes/reviewRoutes';
 dotenv.config();
 connectDB();
 
@@ -27,5 +28,6 @@ app.use("/api/placeorder", customerRoutes);
 app.use("/api", otpRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/admindash", admindashRoutes);
+app.use("/api/reviews", reviewRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

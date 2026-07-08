@@ -27,7 +27,7 @@ const AddFood = () => {
   // Fetch foods
   const fetchFoods = () => {
     axios
-      .get("http://localhost:5000/api/admin/foods", {
+      .get(import.meta.env.VITE_API_URL + "/api/admin/foods", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -46,7 +46,7 @@ const AddFood = () => {
 
     axios
       .post(
-        "http://localhost:5000/api/admin/add-food",
+        import.meta.env.VITE_API_URL + "/api/admin/add-food",
         form,
         {
           headers: {

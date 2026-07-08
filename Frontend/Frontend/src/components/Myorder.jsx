@@ -16,7 +16,7 @@ export default function MyOrders() {
   const fetchOrders = async () => {
 
     const res = await axios.get(
-      "http://localhost:5000/api/order"
+      `${import.meta.env.VITE_API_URL}/api/order`
     );
 
     setOrders(res.data);

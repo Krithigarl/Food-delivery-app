@@ -30,7 +30,7 @@ const Addtocart = ({ cartItems = [], fetchCart }) => {
     try {
 
       await axios.patch(
-        `http://localhost:5000/api/cart/${itemId}`,
+        `${import.meta.env.VITE_API_URL}/api/cart/${itemId}`,
         { type }
       );
 
@@ -49,7 +49,7 @@ const Addtocart = ({ cartItems = [], fetchCart }) => {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/cart/${itemId}`
+        `${import.meta.env.VITE_API_URL}/api/cart/${itemId}`
       );
 
       await fetchCart();

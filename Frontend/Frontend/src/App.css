@@ -159,7 +159,7 @@ body {
 }
 /* TOP FOODS END */
 
-/* POPULAR RESTAURANT ENDS */
+/* POPULAR RESTAURANT START */
 .img_rest {
   width: 300px;
   height: 200px;
@@ -444,7 +444,7 @@ body {
   background-color: #1ca37b;
 }
 
-/* Admin Page */
+
 
 
 
@@ -665,7 +665,19 @@ text-align: center;
 .active-dot{
   background: #666;
 }
+/* Order_Summary.css */
+.colors .progress-bar {
+  background-color: #198754;
+}
 
+.recent-feedback {
+  color: #198754;
+  font-weight: 600;
+  text-align: center;
+}
+.overall-rating {
+  color: #198754;
+}
 /* Admin Dashboard CSS */
 
 /* Start Dashboard */

@@ -71,7 +71,7 @@ ${address}
 Current Status:
 Placed
 
-Thank you for ordering with us 🍔
+Thank you for ordering with us 
           `,
         });
       } catch (emailError) {
