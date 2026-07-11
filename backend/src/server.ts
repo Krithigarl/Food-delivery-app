@@ -29,5 +29,5 @@ app.use("/api", otpRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/admindash", admindashRoutes);
 app.use("/api/reviews", reviewRoutes);
-const PORT = Number(process.env.PORT)|| 5000;
+const PORT = Number(process.env.PORT);
 app.listen(PORT,'0.0.0.0', () => console.log(`Server running on port ${PORT}`));
