@@ -1,16 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDB } from './src/config/db';
-import dishRoutes from './src/routes/dishRoutes';
-import cartRoutes from './src/routes/cartRoutes';
-import customerRoutes from './src/routes/customerRoutes'
-import userRoutes from './src/routes/userRoutes'
-import otpRoutes from './src/routes/otpRoutes'
-import adminRoutes from './src/routes/adminRoutes'
-import orderRoutes from './src/routes/orderRoutes'
-import admindashRoutes from './src/routes/admindash';
-import reviewRoutes from './src/routes/reviewRoutes';
+import { connectDB } from './config/db';
+import dishRoutes from './routes/dishRoutes';
+import cartRoutes from './routes/cartRoutes';
+import customerRoutes from './routes/customerRoutes'
+import userRoutes from './routes/userRoutes'
+import otpRoutes from './routes/otpRoutes'
+import adminRoutes from './routes/adminRoutes'
+import orderRoutes from './routes/orderRoutes'
+import admindashRoutes from './routes/admindash';
+import reviewRoutes from './routes/reviewRoutes';
 dotenv.config();
 connectDB();
 
