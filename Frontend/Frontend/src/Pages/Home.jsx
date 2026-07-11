@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import breakfast from '../assets/Breakfast.png'
+import breakfast from '../assets/breakfast.png'
 import dinner from '../assets/dinner.png'
 import lunch from '../assets/meal.png'
 import snack from '../assets/snack.png'
